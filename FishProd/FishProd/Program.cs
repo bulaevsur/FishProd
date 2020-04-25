@@ -39,7 +39,7 @@ namespace FishProd
             {
                 for (int j = 0; j < i; i++)
                 {
-                    if (Products[j].type[0] < Products[j + 1].type[0] && Products[j].cost < Products[j + 1].cost)
+                    if (Products[j].type[0] < Products[j + 1].type[0] || Products[j].cost < Products[j + 1].cost)
                     {
                         Fish tmp = Products[j];
                         Products[j] = Products[j + 1];
