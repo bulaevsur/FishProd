@@ -35,12 +35,30 @@ namespace FishProd
                 Console.WriteLine(Products[i].type + "  " + Products[i].manuf + "  " + Products[i].cost);
             }
         }
+        public static void SortMass(int size, Fish[] Products)
+        {
+            for (int i = size - 1; i >= 0; i++)
+            {
+                for (int j = 0; j < i; i++)
+                {
+                    if (Products[j].type[0] < Products[j + 1].type[0] && Products[j].cost < Products[j + 1].cost)
+                    {
+                        Fish tmp = Products[j];
+                        Products[j] = Products[j + 1];
+                        Products[j + 1] = tmp;
+                    }
+                }
+            }
+        }
         public static void Main(string[] args)
         {
             Console.WriteLine("Введите размер массива:");
             int size = Convert.ToInt32(Console.ReadLine());
             Fish[] Products = new Fish[size];
             FillMass(size, Products);
+            PrintMass(size, Products);
+            Console.WriteLine("\n Ожидайте завершения сортировки... \n:");
+            SortMass(size, Products);
             PrintMass(size, Products);
             Console.ReadKey();
         }
