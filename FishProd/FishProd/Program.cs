@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FishProd
 {
@@ -50,6 +48,16 @@ namespace FishProd
                 }
             }
         }
+        public static void CreateTXT(int size, Fish[] Products)
+        {
+            using (StreamWriter sw = new StreamWriter("SortFish.txt", false, Encoding.GetEncoding(1251)))
+            {
+                for (int i = 0; i < size; i++)
+                {
+                    sw.Write(Products[i].type + "  " + Products[i].manuf + "  " + Products[i].cost + Environment.NewLine);
+                }
+            }
+        }
         public static void Main(string[] args)
         {
             Console.WriteLine("Введите размер массива:");
@@ -57,9 +65,11 @@ namespace FishProd
             Fish[] Products = new Fish[size];
             FillMass(size, Products);
             PrintMass(size, Products);
-            Console.WriteLine("\n Ожидайте завершения сортировки... \n:");
+            Console.WriteLine("\nОжидайте завершения сортировки... \n");
             SortMass(size, Products);
             PrintMass(size, Products);
+            CreateTXT(size, Products);
+            Console.WriteLine("\nОтсортированный массив также был выведен в текстовый файл. Вы можете найти его в папке проекта.");
             Console.ReadKey();
         }
     }
